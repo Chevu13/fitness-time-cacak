@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import type { CSSProperties } from "react";
-import { TRENINZI } from "@/lib/content";
 
 /** Ulazna animacija je čist CSS — bez JS-a, pa hero nikad ne može ostati nevidljiv. */
 const d = (s: number) => ({ "--hd": `${s}s` }) as CSSProperties;
@@ -83,24 +82,13 @@ export default function Hero() {
           </a>
         </div>
 
+        {/* diskretan scroll cue — lista treninga je izbačena da se ne duplira sa trust barom */}
         <div
-          className="rise mt-14 flex items-end justify-between gap-6 border-t border-white/15 pt-6"
+          className="rise mt-14 hidden justify-end border-t border-white/15 pt-6 sm:flex"
           style={d(0.74)}
         >
-          <ul className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[11px] tracking-[0.14em] text-white/55 uppercase sm:gap-x-4 sm:text-xs">
-            {TRENINZI.map((t, i) => (
-              <li key={t.id} className="flex items-center gap-3 sm:gap-4">
-                {i > 0 && (
-                  <span className="text-brand/70" aria-hidden>
-                    •
-                  </span>
-                )}
-                {t.naziv.replace(" trening", "")}
-              </li>
-            ))}
-          </ul>
           <ArrowDown
-            className="hidden size-4 shrink-0 animate-bounce text-white/40 sm:block"
+            className="size-4 shrink-0 animate-bounce text-white/40"
             aria-hidden
           />
         </div>

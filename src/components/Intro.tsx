@@ -24,13 +24,6 @@ export default function Intro() {
               </div>
             </Reveal>
 
-            <span
-              aria-hidden
-              className="display pointer-events-none absolute -top-8 right-2 text-[clamp(4rem,11vw,9rem)] leading-none text-ink/[0.08] select-none lg:top-auto lg:-right-8 lg:-bottom-12"
-            >
-              01
-            </span>
-
             <Reveal delay={0.08}>
               <p className="mt-5 flex items-center gap-3 text-xs tracking-[0.14em] text-ink/45 uppercase">
                 <span className="h-px w-8 bg-brand" />

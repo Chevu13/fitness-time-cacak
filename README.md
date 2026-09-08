@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fitness Time — demo sajt
 
-## Getting Started
+Prezentacioni sajt za teretanu **Fitness Time** (Čačak, IG [@vreme.za.fitnes](https://www.instagram.com/vreme.za.fitnes/)).
+Next.js 16 + TypeScript + Tailwind CSS v4. Jedna stranica, bez backenda.
 
-First, run the development server:
+## Pokretanje
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deploy (Vercel)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Push repozitorijuma na GitHub.
+2. [vercel.com/new](https://vercel.com/new) → **Import** repozitorijum → **Deploy**.
+   Bez podešavanja: nema env varijabli, nema baze.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Šta je verifikovano, a šta nije
 
-## Learn More
+Sav tekst i ponuda su preuzeti sa zvaničnog Instagram profila (objave i bio):
+grupni treninzi za žene i njihov raspored, individualni i poluindividualni treninzi,
+teretana (open gym), poruke brenda i grad (Čačak, potvrdio vlasnik).
 
-To learn more about Next.js, take a look at the following resources:
+**Namerno nije izmišljeno i ne stoji na sajtu:** adresa, broj telefona, e-mail,
+radno vreme teretane, cene i imena trenera. Cenovnik zato stoji kao „Cena na upit".
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Gde se menja sadržaj
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Šta                                    | Gde                                    |
+| -------------------------------------- | -------------------------------------- |
+| Tekstovi, treninzi, cenovnik, galerija | `src/lib/content.ts`                   |
+| Raspored u sekciji Kontakt             | `src/components/Kontakt.tsx` (`RASPORED`) |
+| Fotografije                            | `public/photos/` (zadrži ista imena)   |
+| Logo                                   | `public/logo.jpg`, `src/app/icon.png`  |
+| SEO naslov/opis                        | `src/app/layout.tsx`                   |
 
-## Deploy on Vercel
+Fotografije su sa njihovog Instagrama i služe samo za demo — zameniti originalima
+u punoj rezoluciji pre puštanja u rad.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Forma za probni trening
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Frontend validacija + demo potvrda; podaci se nigde ne šalju.
+Za pravo slanje dovoljno je zameniti telo funkcije `posaljiPrijavu`
+u `src/components/Prijava.tsx` (API ruta, Resend, Formspree — po izboru).

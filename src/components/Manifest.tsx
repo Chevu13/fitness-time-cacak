@@ -3,7 +3,7 @@ import Reveal from "./Reveal";
 
 export default function Manifest() {
   return (
-    <section className="relative isolate flex min-h-[80svh] items-center overflow-hidden">
+    <section className="relative isolate flex min-h-[70svh] items-center overflow-hidden">
       {/* blagi paralaks — CSS scroll-driven animacija, bez JS-a */}
       <div className="parallax absolute inset-[-8%] -z-10">
         <Image

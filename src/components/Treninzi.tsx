@@ -5,7 +5,7 @@ import { TRENINZI } from "@/lib/content";
 
 export default function Treninzi() {
   return (
-    <section id="treninzi" className="bg-ink py-20 sm:py-28 lg:py-36">
+    <section id="treninzi" className="bg-ink py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>

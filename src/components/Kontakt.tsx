@@ -23,7 +23,7 @@ const RASPORED = [
 
 export default function Kontakt() {
   return (
-    <section id="kontakt" className="bg-ink py-20 sm:py-28 lg:py-36">
+    <section id="kontakt" className="bg-ink py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">

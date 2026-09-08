@@ -4,7 +4,7 @@ import { CENOVNIK } from "@/lib/content";
 
 export default function Cenovnik() {
   return (
-    <section id="cenovnik" className="bg-bone py-20 text-ink sm:py-28 lg:py-36">
+    <section id="cenovnik" className="bg-bone py-16 text-ink sm:py-20 lg:py-24">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>

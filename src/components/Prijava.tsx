@@ -57,7 +57,7 @@ export default function Prijava() {
   }
 
   return (
-    <section id="prijava" className="relative bg-ink-2 py-20 sm:py-28 lg:py-36">
+    <section id="prijava" className="relative bg-ink-2 py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">

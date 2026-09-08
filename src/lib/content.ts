@@ -10,7 +10,8 @@
  *  - grad: Čačak (potvrdio vlasnik)
  *
  * NAMERNO IZOSTAVLJENO (nije verifikovano — dodati kada klijent pošalje):
- *  - tačna adresa, broj telefona, e-mail, radno vreme teretane, cene, imena trenera
+ *  - tačna adresa, broj telefona, e-mail, radno vreme teretane, cene, imena trenera,
+ *    ocene, broj članova i recenzije
  */
 
 export const BUSINESS = {
@@ -24,11 +25,29 @@ export const BUSINESS = {
 
 export const NAV = [
   { label: "Početna", href: "#pocetna" },
-  { label: "Treninzi", href: "#treninzi" },
   { label: "O nama", href: "#o-nama" },
+  { label: "Treninzi", href: "#treninzi" },
+  { label: "Galerija", href: "#galerija" },
+  { label: "Kontakt", href: "#kontakt" },
+] as const;
+
+/** Futer nosi i sekcije kojih nema u glavnoj navigaciji. */
+export const NAV_FOOTER = [
+  { label: "Početna", href: "#pocetna" },
+  { label: "O nama", href: "#o-nama" },
+  { label: "Treninzi", href: "#treninzi" },
   { label: "Galerija", href: "#galerija" },
   { label: "Cenovnik", href: "#cenovnik" },
+  { label: "Probni trening", href: "#prijava" },
   { label: "Kontakt", href: "#kontakt" },
+] as const;
+
+/** Kvalitativne poruke — bez izmišljenih brojki, ocena i broja članova. */
+export const TRUST = [
+  "Stručno vođenje",
+  "Više vrsta treninga",
+  "Individualni pristup",
+  "Fitness Time Čačak",
 ] as const;
 
 export type Trening = {
@@ -46,9 +65,9 @@ export const TRENINZI: Trening[] = [
   {
     id: "grupni",
     broj: "01",
-    naziv: "Grupni treninzi za žene",
-    kratko: "Energija grupe",
-    opis: "Treninzi u ženskoj grupi, uz vođenje trenera od prvog do poslednjeg ponavljanja. Dolaziš u zakazanom terminu i pratiš plan — ne moraš ništa da smišljaš sama.",
+    naziv: "Grupni trening",
+    kratko: "Za žene",
+    opis: "Treninzi u ženskoj grupi, uz vođenje trenera od prvog do poslednjeg ponavljanja.",
     detalji: ["PON · SRE · PET — 19:00 i 20:00", "UTO · ČET · SUB — 09:00"],
     slika: "/photos/g-grupni-1.jpg",
     alt: "Grupni trening za žene u teretani Fitness Time",
@@ -57,8 +76,8 @@ export const TRENINZI: Trening[] = [
     id: "individualni",
     broj: "02",
     naziv: "Individualni trening",
-    kratko: "Ti i trener",
-    opis: "Trening jedan na jedan, prilagođen tvojim ciljevima, nivou i potrebama. Trener je pored tebe cele sesije — ispravlja tehniku i vodi te kroz plan.",
+    kratko: "Jedan na jedan",
+    opis: "Trening prilagođen tvojim ciljevima, nivou i potrebama, uz trenera pored tebe cele sesije.",
     slika: "/photos/g-indi-1.jpg",
     alt: "Trener vodi individualni trening u teretani Fitness Time",
   },
@@ -67,17 +86,17 @@ export const TRENINZI: Trening[] = [
     broj: "03",
     naziv: "Poluindividualni trening",
     kratko: "U manjoj grupi",
-    opis: "Trening uz trenera, u manjoj grupi. Zadržavaš pažnju i vođenje kao na individualnom, uz atmosferu zajedničkog treninga.",
-    slika: "/photos/g-indi-2.jpg",
+    opis: "Vođenje i pažnja kao na individualnom treningu, uz atmosferu zajedničkog rada.",
+    slika: "/photos/g-grupni-3.jpg",
     alt: "Poluindividualni trening uz trenera u teretani Fitness Time",
   },
   {
     id: "teretana",
     broj: "04",
-    naziv: "Teretana — Open Gym",
+    naziv: "Open Gym",
     kratko: "Tvoj plan, tvoj tempo",
-    opis: "Treniraj po svom planu, kada ti odgovara. Oprema, sprave i slobodni tegovi — bez rasporeda i bez čekanja na termin.",
-    slika: "/photos/g-grupni-2.jpg",
+    opis: "Treniraj po svom planu, kada ti odgovara — bez rasporeda i čekanja na termin.",
+    slika: "/photos/g-indi-3.jpg",
     alt: "Teretana sa slobodnim tegovima u Fitness Time",
   },
 ];
@@ -105,6 +124,31 @@ export const RAZLOZI = [
   },
 ];
 
+/** Placeholder kartice — bez izmišljenih imena i biografija trenera. */
+export const TIM_PREVIEW = [
+  {
+    uloga: "Vaš trener",
+    tip: "Individualni trening",
+    slika: "/photos/trener.jpg",
+    alt: "Trener vodi vežbačicu kroz trening",
+    pozicija: "object-[62%_45%]",
+  },
+  {
+    uloga: "Vaš trener",
+    tip: "Grupni trening",
+    slika: "/photos/g-grupni-2.jpg",
+    alt: "Trener nadgleda izvođenje vežbe",
+    pozicija: "object-center",
+  },
+  {
+    uloga: "Vaš tim",
+    tip: "Poluindividualni trening",
+    slika: "/photos/hero.jpg",
+    alt: "Trening uz podršku trenera",
+    pozicija: "object-[42%_50%]",
+  },
+] as const;
+
 export const GALERIJA = [
   {
     src: "/photos/hero.jpg",
@@ -122,31 +166,56 @@ export const GALERIJA = [
   { src: "/photos/g-indi-3.jpg", alt: "Vežbanje u teretani Fitness Time" },
 ] as const;
 
-/** Cene se ne prikazuju dok ih klijent ne pošalje — svesno „na upit“. */
+/** Cene se ne prikazuju dok ih klijent ne pošalje — kartice govore šta trening uključuje. */
 export const CENOVNIK = [
   {
-    naziv: "Grupni treninzi za žene",
-    opis: "Termini u toku nedelje, ujutru i uveče.",
+    naziv: "Grupni trening",
+    opis: "Vođen trening u ženskoj grupi, po fiksnom rasporedu.",
     stavke: [
-      "Vođen trening u grupi",
-      "Fiksni raspored",
+      "Vođenje trenera na svakom treningu",
+      "Termini ujutru i uveče",
       "Pogodno za početnice",
     ],
   },
   {
     naziv: "Individualni trening",
-    opis: "Rad jedan na jedan sa trenerom.",
-    stavke: ["Plan po tvom cilju", "Rad na tehnici", "Termin po dogovoru"],
-    istaknuto: true,
+    opis: "Rad jedan na jedan, u potpunosti prema tvom cilju.",
+    stavke: [
+      "Plan prema cilju i nivou",
+      "Rad na tehnici i držanju",
+      "Termin po dogovoru",
+    ],
   },
   {
     naziv: "Poluindividualni trening",
     opis: "Trening uz trenera, u manjoj grupi.",
-    stavke: ["Vođenje trenera", "Manja grupa", "Termin po dogovoru"],
+    stavke: [
+      "Vođenje trenera tokom treninga",
+      "Manja grupa",
+      "Termin po dogovoru",
+    ],
   },
   {
-    naziv: "Teretana — Open Gym",
+    naziv: "Open Gym",
     opis: "Samostalan trening po sopstvenom planu.",
     stavke: ["Slobodan pristup opremi", "Bez zakazivanja", "Tvoj tempo"],
   },
 ];
+
+export const KORACI = [
+  {
+    broj: "01",
+    naslov: "Ostavi kontakt",
+    tekst: "Ime i broj telefona — traje manje od minuta.",
+  },
+  {
+    broj: "02",
+    naslov: "Dogovorite termin",
+    tekst: "Javljamo se i biramo termin koji ti odgovara.",
+  },
+  {
+    broj: "03",
+    naslov: "Dođi na prvi trening",
+    tekst: "Trener te vodi kroz trening od početka do kraja.",
+  },
+] as const;

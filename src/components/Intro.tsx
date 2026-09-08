@@ -4,19 +4,48 @@ import { BUSINESS } from "@/lib/content";
 
 export default function Intro() {
   return (
-    <section id="o-nama" className="bg-bone py-16 text-ink sm:py-20 lg:py-24">
+    <section
+      id="o-nama"
+      className="relative overflow-hidden bg-bone py-20 text-ink sm:py-24 lg:py-32"
+    >
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-7">
-            <Reveal>
-              <p className="eyebrow flex items-center gap-3 text-ink/50">
+        <div className="grid gap-14 lg:grid-cols-12 lg:items-center lg:gap-8">
+          {/* fotografija — asimetrično, sa dekorativnim brojem preko ivice */}
+          <div className="relative lg:col-span-6 lg:col-start-1">
+            <Reveal y={40}>
+              <div className="relative aspect-[4/5] w-full overflow-hidden sm:aspect-[3/4] lg:aspect-[4/5]">
+                <Image
+                  src="/photos/trener.jpg"
+                  alt="Trener vodi vežbačicu kroz trening u teretani Fitness Time"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-[68%_50%]"
+                />
+              </div>
+            </Reveal>
+
+            <span
+              aria-hidden
+              className="display pointer-events-none absolute -top-8 right-2 text-[clamp(4rem,11vw,9rem)] leading-none text-ink/[0.08] select-none lg:top-auto lg:-right-8 lg:-bottom-12"
+            >
+              01
+            </span>
+
+            <Reveal delay={0.08}>
+              <p className="mt-5 flex items-center gap-3 text-xs tracking-[0.14em] text-ink/45 uppercase">
                 <span className="h-px w-8 bg-brand" />
-                01 — O nama
+                Fitness Time · Čačak
               </p>
+            </Reveal>
+          </div>
+
+          <div className="lg:col-span-5 lg:col-start-8">
+            <Reveal>
+              <p className="eyebrow text-ink/45">O nama</p>
             </Reveal>
 
             <Reveal delay={0.05}>
-              <h2 className="display mt-8 text-[clamp(2.25rem,7vw,4.75rem)]">
+              <h2 className="display mt-6 text-[clamp(2.4rem,6.4vw,4.5rem)]">
                 Trening nije isti
                 <br />
                 za svakoga<span className="text-brand">.</span>
@@ -24,7 +53,7 @@ export default function Intro() {
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="mt-8 max-w-xl space-y-5 text-[17px] leading-relaxed text-ink/70">
+              <div className="mt-8 max-w-[46ch] space-y-5 text-[17px] leading-relaxed text-ink/70">
                 <p>
                   Neko dolazi da se vrati u formu posle pauze, neko da ojača,
                   neko zato što mu je lakše kada trenira u grupi. Zato u Fitness
@@ -50,23 +79,6 @@ export default function Intro() {
                   </li>
                 ))}
               </ul>
-            </Reveal>
-          </div>
-
-          <div className="lg:col-span-5">
-            <Reveal delay={0.1} y={40}>
-              <div className="relative aspect-4/5 w-full overflow-hidden">
-                <Image
-                  src="/photos/trener.jpg"
-                  alt="Trener vodi vežbačicu kroz trening u teretani Fitness Time"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover object-[68%_50%]"
-                />
-              </div>
-              <p className="mt-4 text-xs tracking-[0.14em] text-ink/45 uppercase">
-                Fitness Time · Čačak
-              </p>
             </Reveal>
           </div>
         </div>

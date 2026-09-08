@@ -111,6 +111,44 @@ body {
   }
 }
 
+/* Hero: spori cinematic zoom pri učitavanju + paralaks na skrol (dva ugnježdena elementa) */
+@keyframes hero-zoom {
+  from {
+    opacity: 0;
+    transform: scale(1.14);
+  }
+  15% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes hero-parallax {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(12%);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-zoom {
+    animation: hero-zoom 14s cubic-bezier(0.16, 0.6, 0.24, 1) both;
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .hero-parallax {
+      animation: hero-parallax linear both;
+      animation-timeline: scroll();
+      animation-range: 0 100vh;
+    }
+  }
+}
+
 @keyframes parallax-y {
   from {
     transform: translateY(-5%);

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { InstagramIcon } from "./icons";
-import { BUSINESS, NAV } from "@/lib/content";
+import { BUSINESS, NAV_FOOTER } from "@/lib/content";
 
 export default function Footer() {
   return (
@@ -34,14 +34,14 @@ export default function Footer() {
               href="#prijava"
               className="mt-7 inline-block border border-white/25 px-7 py-3.5 text-[11px] font-semibold tracking-[0.16em] text-white uppercase transition-colors hover:border-brand hover:bg-brand"
             >
-              Prijavi probni trening
+              Zakaži probni trening
             </a>
           </div>
 
           <nav aria-label="Podnožje" className="lg:col-span-4">
             <p className="eyebrow text-[10px] text-white/40">Sadržaj</p>
             <ul className="mt-5 grid grid-cols-2 gap-x-8 gap-y-3.5 sm:grid-cols-3 lg:gap-x-6">
-              {NAV.map((item) => (
+              {NAV_FOOTER.map((item) => (
                 <li key={item.href}>
                   <a
                     href={item.href}

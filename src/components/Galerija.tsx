@@ -17,18 +17,18 @@ const LAYOUT = [
 
 export default function Galerija() {
   return (
-    <section id="galerija" className="bg-ink py-16 sm:py-20 lg:py-24">
+    <section id="galerija" className="bg-ink py-20 sm:py-24 lg:py-32">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <Reveal>
               <p className="eyebrow flex items-center gap-3 text-white/50">
                 <span className="h-px w-8 bg-brand" />
-                04 — Galerija
+                Galerija
               </p>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="display mt-8 text-[clamp(2.25rem,7vw,4.75rem)]">
+              <h2 className="display mt-6 text-[clamp(2.2rem,5.6vw,4.5rem)]">
                 Ovako izgleda
                 <br />
                 trening kod nas<span className="text-brand">.</span>
@@ -47,25 +47,27 @@ export default function Galerija() {
           </Reveal>
         </div>
 
-        <Reveal delay={0.05} y={32}>
-          <div className="mt-12 grid auto-rows-[6.5rem] grid-cols-2 gap-2 sm:auto-rows-[9rem] sm:gap-3 md:grid-cols-6 md:auto-rows-[7.5rem] lg:auto-rows-[9.5rem]">
-            {GALERIJA.map((g, i) => (
-              <figure
-                key={g.src + i}
-                className={`group relative overflow-hidden bg-ink-2 ${LAYOUT[i]}`}
-              >
+        <div className="mt-12 grid auto-rows-[6.5rem] grid-cols-2 gap-2 sm:mt-16 sm:auto-rows-[9rem] sm:gap-3 md:auto-rows-[7.5rem] md:grid-cols-6 lg:auto-rows-[9.5rem]">
+          {GALERIJA.map((g, i) => (
+            <Reveal
+              key={g.src + i}
+              delay={0.04 * (i % 4)}
+              y={20}
+              className={LAYOUT[i]}
+            >
+              <figure className="group relative h-full w-full overflow-hidden bg-ink-2">
                 <Image
                   src={g.src}
                   alt={g.alt}
                   fill
                   sizes="(max-width: 768px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"
+                  className="object-cover transition-transform duration-[1100ms] ease-out group-hover:scale-[1.06]"
                 />
                 <span className="pointer-events-none absolute inset-0 bg-ink/0 transition-colors duration-500 group-hover:bg-ink/20" />
               </figure>
-            ))}
-          </div>
-        </Reveal>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Loader2 } from "lucide-react";
+import { ArrowRight, Check, Loader2 } from "lucide-react";
 import Reveal from "./Reveal";
-import { TRENINZI } from "@/lib/content";
+import { KORACI, TRENINZI } from "@/lib/content";
 
 type Polja = { ime: string; telefon: string; tip: string; poruka: string };
 type Greske = Partial<Record<keyof Polja, string>>;
@@ -29,6 +29,8 @@ function proveri(p: Polja): Greske {
 
 const polje =
   "w-full border border-white/15 bg-ink px-4 py-4 text-[15px] text-white placeholder:text-white/35 transition-colors focus:border-brand focus:outline-none";
+
+const labela = "eyebrow mb-3 block text-[10px] text-white/50";
 
 export default function Prijava() {
   const [podaci, setPodaci] = useState<Polja>(PRAZNO);
@@ -57,60 +59,73 @@ export default function Prijava() {
   }
 
   return (
-    <section id="prijava" className="relative bg-ink-2 py-16 sm:py-20 lg:py-24">
+    <section
+      id="prijava"
+      className="relative overflow-hidden bg-ink py-20 sm:py-24 lg:py-32"
+    >
+      {/* tanka crvena linija kao akcenat sekcije */}
+      <span
+        aria-hidden
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand to-transparent"
+      />
+
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
             <Reveal>
               <p className="eyebrow flex items-center gap-3 text-white/50">
                 <span className="h-px w-8 bg-brand" />
-                06 — Probni trening
+                Probni trening
               </p>
             </Reveal>
+
             <Reveal delay={0.05}>
-              <h2 className="display mt-8 text-[clamp(2.25rem,7vw,4.25rem)]">
-                Spreman/na
+              <h2 className="display mt-6 text-[clamp(2.2rem,5.6vw,4rem)]">
+                Tvom prvom treningu
                 <br />
-                za prvi trening<span className="text-brand">?</span>
+                treba samo jedan korak<span className="text-brand">.</span>
               </h2>
             </Reveal>
+
             <Reveal delay={0.1}>
-              <p className="mt-6 max-w-md leading-relaxed text-white/65">
-                Ostavi ime i broj telefona, i javljamo ti se sa slobodnim
-                terminima. Bez obaveze — dogovorićemo termin koji ti odgovara i
-                vrstu treninga koja ima smisla za tebe.
+              <p className="mt-7 max-w-[46ch] text-lg leading-relaxed text-white/65">
+                Ostavi kontakt i Fitness Time tim može ti pomoći da pronađeš
+                trening koji odgovara tvom cilju.
               </p>
             </Reveal>
-            <Reveal delay={0.15}>
-              <ul className="mt-10 space-y-4 border-t border-white/12 pt-8">
-                {[
-                  "Popuni prijavu — traje manje od minuta.",
-                  "Kontaktiramo te i biramo termin.",
-                  "Dolaziš na trening, ostalo je na nama.",
-                ].map((korak, i) => (
-                  <li key={korak} className="flex gap-4 text-white/70">
-                    <span className="eyebrow shrink-0 pt-1 text-[10px] text-brand">
-                      {String(i + 1).padStart(2, "0")}
+
+            <ol className="mt-12">
+              {KORACI.map((k, i) => (
+                <Reveal
+                  key={k.broj}
+                  as="li"
+                  delay={0.05 * i}
+                  className="group relative flex gap-6 border-t border-white/12 py-6 last:border-b last:border-b-white/12"
+                >
+                  <span className="display text-2xl text-brand">{k.broj}</span>
+                  <span>
+                    <span className="display block text-lg">{k.naslov}</span>
+                    <span className="mt-1.5 block text-white/55">
+                      {k.tekst}
                     </span>
-                    {korak}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
+                  </span>
+                </Reveal>
+              ))}
+            </ol>
           </div>
 
-          <div className="lg:col-span-7">
-            <Reveal delay={0.1} y={32}>
-              <div className="relative border border-white/12 bg-ink p-6 sm:p-10">
+          <div className="lg:col-span-6 lg:col-start-7">
+            <Reveal delay={0.08} y={32}>
+              <div className="relative border border-white/12 bg-ink-2 p-6 sm:p-10">
                 {stanje === "poslato" ? (
-                  <div className="rise flex min-h-[420px] flex-col items-start justify-center">
+                  <div className="rise flex min-h-[26rem] flex-col items-start justify-center">
                     <span className="flex size-14 items-center justify-center rounded-full bg-brand">
                       <Check className="size-7 text-white" aria-hidden />
                     </span>
-                    <h3 className="display mt-6 text-3xl sm:text-4xl">
+                    <h3 className="display mt-7 text-3xl sm:text-4xl">
                       Prijava je poslata.
                     </h3>
-                    <p className="mt-4 max-w-sm leading-relaxed text-white/65">
+                    <p className="mt-4 max-w-[40ch] leading-relaxed text-white/65">
                       Hvala, {podaci.ime.split(" ")[0]}. Kontaktiraćemo te na
                       broj <span className="text-white">{podaci.telefon}</span>{" "}
                       radi dogovora o terminu.
@@ -121,7 +136,7 @@ export default function Prijava() {
                         setPodaci(PRAZNO);
                         setStanje("idle");
                       }}
-                      className="mt-8 border-b border-white/25 pb-1 text-[12px] font-semibold tracking-[0.16em] text-white uppercase transition-colors hover:border-brand hover:text-brand"
+                      className="mt-9 border-b border-white/25 pb-1 text-[12px] font-semibold tracking-[0.16em] text-white uppercase transition-colors hover:border-brand hover:text-brand"
                     >
                       Pošalji novu prijavu
                     </button>
@@ -132,11 +147,8 @@ export default function Prijava() {
                     noValidate
                     className="grid gap-5 sm:grid-cols-2"
                   >
-                    <div className="sm:col-span-1">
-                      <label
-                        htmlFor="ime"
-                        className="eyebrow mb-3 block text-[10px] text-white/50"
-                      >
+                    <div>
+                      <label htmlFor="ime" className={labela}>
                         Ime i prezime *
                       </label>
                       <input
@@ -154,11 +166,8 @@ export default function Prijava() {
                       )}
                     </div>
 
-                    <div className="sm:col-span-1">
-                      <label
-                        htmlFor="telefon"
-                        className="eyebrow mb-3 block text-[10px] text-white/50"
-                      >
+                    <div>
+                      <label htmlFor="telefon" className={labela}>
                         Telefon *
                       </label>
                       <input
@@ -181,11 +190,8 @@ export default function Prijava() {
                     </div>
 
                     <div className="sm:col-span-2">
-                      <label
-                        htmlFor="tip"
-                        className="eyebrow mb-3 block text-[10px] text-white/50"
-                      >
-                        Vrsta treninga
+                      <label htmlFor="tip" className={labela}>
+                        Vrsta treninga (opciono)
                       </label>
                       <select
                         id="tip"
@@ -206,11 +212,8 @@ export default function Prijava() {
                     </div>
 
                     <div className="sm:col-span-2">
-                      <label
-                        htmlFor="poruka"
-                        className="eyebrow mb-3 block text-[10px] text-white/50"
-                      >
-                        Poruka
+                      <label htmlFor="poruka" className={labela}>
+                        Poruka (opciono)
                       </label>
                       <textarea
                         id="poruka"
@@ -227,15 +230,19 @@ export default function Prijava() {
                       <button
                         type="submit"
                         disabled={stanje === "salje"}
-                        className="flex w-full items-center justify-center gap-3 bg-brand py-5 text-[12px] font-semibold tracking-[0.16em] text-white uppercase transition-colors hover:bg-brand-deep disabled:opacity-70"
+                        className="group flex w-full items-center justify-center gap-3 bg-brand py-5 text-[12px] font-semibold tracking-[0.16em] text-white uppercase transition-colors hover:bg-brand-deep disabled:opacity-70"
                       >
-                        {stanje === "salje" && (
+                        {stanje === "salje" ? (
                           <Loader2
                             className="size-4 animate-spin"
                             aria-hidden
                           />
-                        )}
-                        Prijavi se za probni trening
+                        ) : null}
+                        Zakaži probni trening
+                        <ArrowRight
+                          className="size-4 transition-transform duration-300 group-hover:translate-x-1"
+                          aria-hidden
+                        />
                       </button>
                       <p className="mt-4 text-xs leading-relaxed text-white/40">
                         Podatke koristimo isključivo za kontakt u vezi sa

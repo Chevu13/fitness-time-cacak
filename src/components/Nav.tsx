@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 import { NAV } from "@/lib/content";
 
 export default function Nav() {
@@ -80,9 +80,13 @@ export default function Nav() {
           <div className="flex items-center gap-3">
             <a
               href="#prijava"
-              className="hidden bg-brand px-5 py-3 text-[11px] font-semibold tracking-[0.16em] text-white uppercase transition-colors hover:bg-brand-deep lg:block"
+              className="group hidden items-center gap-2 bg-brand px-6 py-3.5 text-[11px] font-semibold tracking-[0.16em] text-white uppercase transition-colors hover:bg-brand-deep lg:flex"
             >
-              Prijavi probni trening
+              Zakaži trening
+              <ArrowRight
+                className="size-3.5 transition-transform duration-300 group-hover:translate-x-1"
+                aria-hidden
+              />
             </a>
             <button
               type="button"
@@ -135,7 +139,7 @@ export default function Nav() {
             tabIndex={open ? 0 : -1}
             className="block bg-brand py-5 text-center text-sm font-semibold tracking-[0.16em] text-white uppercase"
           >
-            Prijavi probni trening
+            Zakaži probni trening
           </a>
         </div>
       </div>

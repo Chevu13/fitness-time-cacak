@@ -23,17 +23,20 @@ grupni treninzi za žene i njihov raspored, individualni i poluindividualni tren
 teretana (open gym), poruke brenda i grad (Čačak, potvrdio vlasnik).
 
 **Namerno nije izmišljeno i ne stoji na sajtu:** adresa, broj telefona, e-mail,
-radno vreme teretane, cene i imena trenera. Cenovnik zato stoji kao „Cena na upit".
+radno vreme teretane, cene, imena trenera, ocene, broj članova i recenzije.
+Cenovnik zato pokazuje šta trening uključuje umesto cene, a sekcije „Upoznaj tim"
+i „Iskustva članova" su jasno označene kao **primer sekcije / primer sadržaja** —
+tu se vidi kako bi izgledale kada klijent pošalje podatke.
 
 ## Gde se menja sadržaj
 
-| Šta                                    | Gde                                    |
-| -------------------------------------- | -------------------------------------- |
-| Tekstovi, treninzi, cenovnik, galerija | `src/lib/content.ts`                   |
+| Šta                                    | Gde                                       |
+| -------------------------------------- | ----------------------------------------- |
+| Tekstovi, treninzi, cenovnik, galerija | `src/lib/content.ts`                      |
 | Raspored u sekciji Kontakt             | `src/components/Kontakt.tsx` (`RASPORED`) |
-| Fotografije                            | `public/photos/` (zadrži ista imena)   |
-| Logo                                   | `public/logo.jpg`, `src/app/icon.png`  |
-| SEO naslov/opis                        | `src/app/layout.tsx`                   |
+| Fotografije                            | `public/photos/` (zadrži ista imena)      |
+| Logo                                   | `public/logo.jpg`, `src/app/icon.png`     |
+| SEO naslov/opis                        | `src/app/layout.tsx`                      |
 
 Fotografije su sa njihovog Instagrama i služe samo za demo — zameniti originalima
 u punoj rezoluciji pre puštanja u rad.

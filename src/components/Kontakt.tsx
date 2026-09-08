@@ -1,4 +1,4 @@
-import { MapPin, Clock } from "lucide-react";
+import { ArrowRight, Clock, MapPin } from "lucide-react";
 import { InstagramIcon } from "./icons";
 import Reveal from "./Reveal";
 import { BUSINESS } from "@/lib/content";
@@ -23,18 +23,18 @@ const RASPORED = [
 
 export default function Kontakt() {
   return (
-    <section id="kontakt" className="bg-ink py-16 sm:py-20 lg:py-24">
+    <section id="kontakt" className="bg-ink-2 py-20 sm:py-24 lg:py-32">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
             <Reveal>
               <p className="eyebrow flex items-center gap-3 text-white/50">
                 <span className="h-px w-8 bg-brand" />
-                07 — Kontakt
+                Kontakt
               </p>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="display mt-8 text-[clamp(2.25rem,7vw,4.25rem)]">
+              <h2 className="display mt-6 text-[clamp(2.2rem,5.6vw,4rem)]">
                 Vidimo se
                 <br />u teretani<span className="text-brand">.</span>
               </h2>
@@ -52,6 +52,18 @@ export default function Kontakt() {
                       Lokacija
                     </dt>
                     <dd className="display mt-2 text-2xl">Čačak</dd>
+                    <dd className="mt-3">
+                      <button
+                        type="button"
+                        disabled
+                        className="cursor-not-allowed border-b border-white/20 pb-1 text-[11px] font-semibold tracking-[0.16em] text-white/40 uppercase"
+                      >
+                        Prikaži lokaciju
+                      </button>
+                      <span className="mt-2 block text-xs text-white/35">
+                        Mapa i tačna adresa se dodaju uz podatke od vas.
+                      </span>
+                    </dd>
                   </div>
                 </div>
                 <div className="flex items-start gap-4 py-6">
@@ -92,16 +104,20 @@ export default function Kontakt() {
             <Reveal delay={0.15}>
               <a
                 href="#prijava"
-                className="mt-10 inline-block bg-brand px-8 py-4.5 text-[12px] font-semibold tracking-[0.16em] text-white uppercase transition-colors hover:bg-brand-deep"
+                className="group mt-10 inline-flex items-center gap-3 bg-brand px-8 py-4.5 text-[12px] font-semibold tracking-[0.16em] text-white uppercase transition-colors hover:bg-brand-deep"
               >
-                Prijavi probni trening
+                Zakaži probni trening
+                <ArrowRight
+                  className="size-4 transition-transform duration-300 group-hover:translate-x-1"
+                  aria-hidden
+                />
               </a>
             </Reveal>
           </div>
 
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-6 lg:col-start-7">
             <Reveal delay={0.1} y={32}>
-              <div className="border border-white/12 bg-ink-2 p-6 sm:p-10">
+              <div className="border border-white/12 bg-ink p-6 sm:p-10">
                 <p className="eyebrow text-[10px] text-white/45">Raspored</p>
                 <h3 className="display mt-4 text-2xl sm:text-3xl">
                   Kada se trenira

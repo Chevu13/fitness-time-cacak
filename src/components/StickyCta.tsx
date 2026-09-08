@@ -33,7 +33,7 @@ export default function StickyCta() {
         tabIndex={vidljiv ? 0 : -1}
         className="block bg-brand py-4 text-center text-[12px] font-semibold tracking-[0.16em] text-white uppercase"
       >
-        Prijavi probni trening
+        Zakaži probni trening
       </a>
     </div>
   );
